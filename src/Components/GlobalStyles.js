@@ -10,7 +10,7 @@ const GlobalStyles = createGlobalStyle`
 
     body {
         position: relative;
-        background-color: #000;
+        background-color: #000000;
         margin: 0;
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
         font-size: 16px;
@@ -25,7 +25,7 @@ const GlobalStyles = createGlobalStyle`
     }
 
     main {
-        padding: 65px 0;
+        padding: 130px 20px;
     }
 `;
 

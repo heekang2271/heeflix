@@ -8,15 +8,18 @@ const Header = styled.header`
     left: 0;
     width: 100%;
     height: 65px;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.8);
     z-index: 10;
     display: flex;
+    justify-content: center;
 `;
 
 const GnbBox = styled.ul`
     display: flex;
     height: 100%;
     align-items: center;
+    width: 100%;
+    max-width: 1280px;
     padding: 0 20px;
 `;
 
