@@ -4,9 +4,12 @@ import { withRouter } from "react-router-dom";
 import { moviesAPI, tvAPI } from "../api";
 import Error from "../Components/Error";
 import Message from "../Components/Message";
-import Detail from "../Components/Detail";
-import noPoster from "../img/popcorn.png";
-import DetailHeader from "../Components/DetailHeader";
+import Video from "../Components/Video";
+import styled from "styled-components";
+
+const Main = styled.main`
+    padding-top: 0;
+`;
 
 export default withRouter(({ location: { pathname }, match: { params: { id } }, history: { push } }) => {
     const isMovie = pathname.includes("/movie/");
@@ -53,29 +56,19 @@ export default withRouter(({ location: { pathname }, match: { params: { id } }, 
     }
 
     const { data, loading, error } = useGetData();
-
     return (
-        loading ? <Loader /> : (
+        loading ? <div></div> : (
             error ? (
                 <Error>
                     <Message text="Can't find movies information." color="#e74c3c" />
                 </Error>
             ): (
-                    <main>
-                        <DetailHeader />
-                        {console.log(data)}
-                        <Detail
-                            cover={data.backdrop_path ? `https://image.tmdb.org/t/p/original${data.backdrop_path}` : noPoster}
-                            bgImage={data.poster_path ? `https://image.tmdb.org/t/p/original${data.poster_path}` : noPoster}
-                            title={data.original_title ? data.original_title : data.original_name}
-                            year={data.release_date ? data.release_date.substring(0, 4) : data.first_air_date.substring(0, 4)}
-                            runtime={data.runtime ? data.runtime : data.episode_run_time[0]}
-                            genres={data.genres}
-                            overview={data.overview}
-                            imdb={data.imdb_id ? `https://imdb.com/title/${data.imdb_id}` : "https://imdb.com"}
-                            isMovie={isMovie}
-                        />
-                    </main>
+                    <Main>
+                        {data.videos.results && data.videos.results.length > 0 ? 
+                            <Video videos={data.videos.results} /> :
+                            <Message text="The video does not exist." color="#FFF" />
+                        }
+                    </Main>
             )
         )
     )

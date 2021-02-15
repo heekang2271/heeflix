@@ -58,7 +58,7 @@ const Year = styled.div`
 `;
 
 export default ({ id, imageUrl, title, rating, year, isMovie }) => (
-    <Link to={isMovie ? `/movie/${id}` : `/show/${id}`}>
+    <Link to={isMovie ? `/movie/${id}/detail` : `/show/${id}/detail`}>
         <Container>
             <ImageBox>
                 <Image bgUrl={imageUrl ? `https://image.tmdb.org/t/p/w300${imageUrl}` : noPoster}></Image>

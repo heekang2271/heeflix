@@ -7,34 +7,6 @@ const Container = styled.div`
     font-family: "Poppins", "Noto Sans KR", -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 `;
 
-const Cover = styled.div`
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    background-image: url(${props => props.cover});
-    background-size: cover;
-    background-position: center center;
-    /* 지울부분 */
-    /* opacity: 0.5;
-    filter: blur(3px); */
-    animation-name: blur;
-    animation-fill-mode: forwards;
-    animation-duration: 1s;
-    animation-delay: 1s;
-    @keyframes blur {
-        0% {
-            opacity: 1;
-        }
-        100% {
-            filter: blur(3px);
-            opacity: 0.5;
-        }
-    }
-    z-index: -1;
-`;
-
 const Poster = styled.div`
     background-image: url(${props => props.bgImage});
     background-size: cover;
@@ -85,7 +57,7 @@ const Data = styled.div`
 `;
 
 const Title = styled.div`
-    font-size: 42px;
+    font-size: 32px;
     font-weight: 500;
 `;
 
@@ -120,9 +92,8 @@ const Imdb = styled.div`
     font-weight: 800;
 `;
 
-export default ({ cover, bgImage, title, year, runtime, genres, overview, imdb, isMovie }) => (
+export default ({ bgImage, title, year, runtime, genres, overview, imdb, isMovie }) => (
     <Container>
-        <Cover cover={cover} />
         <Poster bgImage={bgImage} />
         <Data>
             <Title>{title}</Title>
