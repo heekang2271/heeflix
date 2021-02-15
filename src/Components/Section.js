@@ -44,13 +44,15 @@ export default ({ title, children }) => {
         const element = useRef();
         const screenHeight = window.innerHeight;
         let posY = 0;
+        let show = false;
 
         const getScrollY = () => {
             if (element.current && posY + ADD_HEIGHT > screenHeight) {
                 const { current } = element;
                 const scrollY = window.scrollY;
-                if (screenHeight + scrollY > posY + ADD_HEIGHT) {
+                if (screenHeight + scrollY > posY + ADD_HEIGHT && !show) {
                     current.style.animationName = "fromBottom";
+                    show = true;
                 }
             }
         }

@@ -9,7 +9,7 @@ import Poster from "../Components/Poster";
 export default () => {
     const useGetData = () => {
         const [loading, setLoading] = useState(true);
-        const [error, setError] = useState(null);
+        const [error, setError] = useState(false);
         const [data, setData] = useState({
             topRated: null,
             popular: null,
@@ -42,7 +42,7 @@ export default () => {
                     airingToday
                 });
             } catch (e) {
-                setError("Can't find movies information.");
+                setError(true);
             } finally {
                 setTimeout(() => {
                     setLoading(false)
@@ -67,11 +67,11 @@ export default () => {
         loading ? <Loader /> : (
             error ? (
                 <Error>
-                    <Message text="Can't find movies information." color="#e74c3c" />
+                    <Message text="Can't find tv information." color="#e74c3c" />
                 </Error>
             ) : (
                     <main>
-                        <Section title="Now Playing">
+                        <Section title="Top Rated Show">
                             {topRated.map(show => (
                                 <Poster 
                                     key={show.id}
@@ -80,12 +80,12 @@ export default () => {
                                     title={show.original_name}
                                     rating={show.vote_average}
                                     year={show.first_air_date && show.first_air_date.substring(0, 4)}
-                                    isMovie={ true}
+                                    isMovie={false}
                                 />
                             ))}
                         </Section>
                     
-                        <Section title="popular Movies">
+                        <Section title="Popular Show">
                             {popular.map(show => (
                                 <Poster 
                                     key={show.id}
@@ -94,12 +94,12 @@ export default () => {
                                     title={show.original_name}
                                     rating={show.vote_average}
                                     year={show.first_air_date && show.first_air_date.substring(0, 4)}
-                                    isMovie={ true}
+                                    isMovie={false}
                                 />
                             ))}
                         </Section>
                     
-                        <Section title="airingToday Movies">
+                        <Section title="Airing Today">
                             {airingToday.map(show => (
                                 <Poster 
                                     key={show.id}
@@ -108,7 +108,7 @@ export default () => {
                                     title={show.original_name}
                                     rating={show.vote_average}
                                     year={show.first_air_date && show.first_air_date.substring(0, 4)}
-                                    isMovie={ true}
+                                    isMovie={false}
                                 />
                             ))}
                         </Section>

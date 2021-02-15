@@ -9,7 +9,7 @@ import Poster from "../Components/Poster";
 export default () => {
     const useGetData = () => {
         const [loading, setLoading] = useState(true);
-        const [error, setError] = useState(null);
+        const [error, setError] = useState(false);
         const [data, setData] = useState({
             nowPlaying: null,
             upcoming: null,
@@ -42,7 +42,7 @@ export default () => {
                     popular
                 });
             } catch (e) {
-                setError("Can't find movies information.");
+                setError(true);
             } finally {
                 setTimeout(() => {
                     setLoading(false)

@@ -53,8 +53,8 @@ export default withRouter(({ history: { location: {pathname} } }) => (
             <Gnb current={pathname === "/movie"}>
                 <Link to="/movie">MOVIE</Link>
             </Gnb>
-            <Gnb current={pathname === "/tv"}>
-                <Link to="/tv">TV</Link>
+            <Gnb current={pathname === "/show"}>
+                <Link to="/show">TV</Link>
             </Gnb>
             <Gnb current={pathname === "/search"}>
                 <Link to="/search">SEARCH</Link>

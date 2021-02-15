@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import noPoster from "../img/popcorn.png";
+import { Link } from "react-router-dom";
 
 const Image = styled.div`
     background-image: url(${props => props.bgUrl});
@@ -56,13 +57,15 @@ const Year = styled.div`
     opacity: 0.7;
 `;
 
-export default ({id, imageUrl, title, rating, year, isMovie}) => (
-    <Container>
-        <ImageBox>
-            <Image bgUrl={imageUrl ? `https://image.tmdb.org/t/p/w300${imageUrl}` : noPoster}></Image>
-            <Rating>⭐{ rating } / 10.0</Rating>
-        </ImageBox>
-        <Title>{title}</Title>
-        <Year>{year}</Year>
-    </Container>
+export default ({ id, imageUrl, title, rating, year, isMovie }) => (
+    <Link to={isMovie ? `/movie/${id}` : `/show/${id}`}>
+        <Container>
+            <ImageBox>
+                <Image bgUrl={imageUrl ? `https://image.tmdb.org/t/p/w300${imageUrl}` : noPoster}></Image>
+                <Rating>⭐{ rating } / 10.0</Rating>
+            </ImageBox>
+            <Title>{title}</Title>
+            <Year>{year}</Year>
+        </Container>
+    </Link>
 )
