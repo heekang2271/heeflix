@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import noPoster from "../img/popcorn.png";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
 const Image = styled.div`
     background-image: url(${props => props.bgUrl});
@@ -57,7 +58,7 @@ const Year = styled.div`
     opacity: 0.7;
 `;
 
-export default ({ id, imageUrl, title, rating, year, isMovie }) => (
+const Poster = ({ id, imageUrl, title, rating, year, isMovie }) => (
     <Link to={isMovie ? `/movie/${id}/detail` : `/show/${id}/detail`}>
         <Container>
             <ImageBox>
@@ -69,3 +70,14 @@ export default ({ id, imageUrl, title, rating, year, isMovie }) => (
         </Container>
     </Link>
 )
+
+Poster.propTypes = {
+    id: PropTypes.number.isRequired,
+    imageUrl: PropTypes.string,
+    title: PropTypes.string.isRequired,
+    rating: PropTypes.number.isRequired,
+    year: PropTypes.string.isRequired,
+    isMovie: PropTypes.bool.isRequired
+}
+
+export default Poster;

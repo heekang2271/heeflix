@@ -6,6 +6,7 @@ import Error from "../Components/Error";
 import Message from "../Components/Message";
 import Season from "../Components/Season";
 import styled from "styled-components";
+import Section from "../Components/Section";
 
 const Main = styled.main`
     padding-top: 0;
@@ -58,14 +59,29 @@ export default withRouter(({ location: { pathname }, match: { params: { id } }, 
     const { data, loading, error } = useGetData();
 
     return (
-        loading ? <Loader /> : (
+        loading ? <div></div> : (
             error ? (
                 <Error>
                     <Message text="Can't find movies information." color="#e74c3c" />
                 </Error>
             ): (
                     <Main>
-                        <Season />
+                        {data.seasons && data.seasons.length > 0 ? (
+                            <Section title="Seasons">
+                                {data.seasons.map((season, index) => (
+                                    <Season
+                                        key={season.id}
+                                        number={season.season_number}
+                                        bgUrl={season.poster_path}
+                                        name={season.name}
+                                        date={season.air_date}
+                                        delay={(index + 1) * 0.3}
+                                    />
+                                ))}
+                            </Section>
+                        ): (
+                            <Message text="Season information does not exist." color="#e74c3c" />
+                        )}
                     </Main>
             )
         )

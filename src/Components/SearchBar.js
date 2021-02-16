@@ -1,11 +1,13 @@
 import React from "react";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
 const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-bottom: 70px;
+    margin-top: 50px;
 `;
 
 const Text = styled.div`
@@ -42,7 +44,7 @@ const SubmitBtn = styled.button`
     padding: 0 10px;
 `;
 
-export default ({title, handleSubmit, updateTerm}) => (
+const SearchBar = ({title, handleSubmit, updateTerm}) => (
     <Container>
         <Text>{ title }</Text>
         <Form onSubmit={handleSubmit}>
@@ -53,3 +55,11 @@ export default ({title, handleSubmit, updateTerm}) => (
         </Form>
     </Container>
 )
+
+SearchBar.propTypes = {
+    title: PropTypes.string.isRequired,
+    handleSubmit: PropTypes.func.isRequired,
+    updateTerm: PropTypes.func.isRequired
+}
+
+export default SearchBar;

@@ -1,10 +1,10 @@
 import React, {useRef, useEffect} from "react";
 import styled from "styled-components";
-import PropTypes from "prop-types";
 
 const ADD_HEIGHT = 150;
 
 const Container = styled.div`
+    width: 100%;
     &:not(:last-child) {
         margin-bottom: 70px;
     }
@@ -13,6 +13,7 @@ const Container = styled.div`
         position: relative;
         animation-duration: 1s;
         animation-fill-mode: forwards;
+        width: 100%;
     }
 
     @keyframes fromBottom {
@@ -28,19 +29,7 @@ const Container = styled.div`
     }
 `;
 
-const Title = styled.h2`
-    font-size: 24px;
-    margin-bottom: 30px;
-    font-family: "Kanit", sans-serif;
-`;
-
-const Content = styled.div`
-    display: grid;
-    grid-template-columns: repeat(auto-fill, 150px);
-    grid-gap: 25px;
-`;
-
-const Section = ({ title, children }) => {
+export default ({ children }) => {
     const useFadeIn = () => {
         const element = useRef();
         const screenHeight = window.innerHeight;
@@ -76,17 +65,8 @@ const Section = ({ title, children }) => {
     return (
         <Container>
             <div ref={ref}>
-                <Title>{title}</Title>
-                <Content>
-                    {children}
-                </Content>
+                {children}
             </div>
         </Container>
     )
 }
-
-Section.propTypes = {
-    title: PropTypes.string.isRequired
-}
-
-export default Section;

@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Link, withRouter } from "react-router-dom";
+import PropTypes from "prop-types";
 
 const Container = styled.div`
     //position: absolute;
@@ -23,7 +24,7 @@ const Item = styled.div`
 `;
 
 const Cover = styled.div`
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -31,9 +32,6 @@ const Cover = styled.div`
     background-image: url(${props => props.cover});
     background-size: cover;
     background-position: center center;
-    /* 지울부분 */
-    /* opacity: 0.5;
-    filter: blur(3px); */
     animation-name: blur;
     animation-fill-mode: forwards;
     animation-duration: 1s;
@@ -44,13 +42,13 @@ const Cover = styled.div`
         }
         100% {
             filter: blur(3px);
-            opacity: 0.5;
+            opacity: 0.4;
         }
     }
     z-index: -1;
 `;
 
-export default withRouter(({match: {params: {id}}, history:{location:{pathname}}, cover}) => {
+const DetailHeader = withRouter(({match: {params: {id}}, history:{location:{pathname}}, cover}) => {
     const isMovie = pathname.includes("/movie/");
     return (
         <Container>
@@ -72,4 +70,9 @@ export default withRouter(({match: {params: {id}}, history:{location:{pathname}}
         </Container>
     )
 })
-    
+
+DetailHeader.propTypes = {
+    cover: PropTypes.string.isRequired
+}
+
+export default DetailHeader;

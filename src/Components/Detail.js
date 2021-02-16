@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
 const Container = styled.div`
     display: flex;
@@ -12,6 +13,7 @@ const Poster = styled.div`
     background-size: cover;
     background-position: center center;
     height: 100%;
+    max-height: 680px;
     opacity: 0;
     animation-name: fade;
     animation-fill-mode: forwards;
@@ -92,7 +94,7 @@ const Imdb = styled.div`
     font-weight: 800;
 `;
 
-export default ({ bgImage, title, year, runtime, genres, overview, imdb, isMovie }) => (
+const Detail = ({ bgImage, title, year, runtime, genres, overview, imdb }) => (
     <Container>
         <Poster bgImage={bgImage} />
         <Data>
@@ -119,3 +121,19 @@ export default ({ bgImage, title, year, runtime, genres, overview, imdb, isMovie
         </Data>
     </Container>
 )
+
+Detail.propTypes = {
+    bgImage: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    year: PropTypes.string,
+    runtime: PropTypes.string,
+    genres: PropTypes.arrayOf(
+        PropTypes.shape({
+            name: PropTypes.string
+        })
+    ),
+    overview: PropTypes.string,
+    imdb: PropTypes.string
+}
+
+export default Detail;

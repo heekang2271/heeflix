@@ -1,5 +1,6 @@
 import React, {useEffect, useRef} from "react";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
 const Container = styled.div`
     margin-top: 70px;
@@ -102,7 +103,7 @@ const Cover = styled.div`
 `;
 
 
-export default ({ videos }) => {
+const Video = ({ videos }) => {
     const element = useRef();
     const init = useRef();
     let current = null;
@@ -138,3 +139,15 @@ export default ({ videos }) => {
         </Container>
     )
 };
+
+Video.propTypes = {
+    videos: PropTypes.arrayOf(
+        PropTypes.shape({
+            key: PropTypes.string.isRequired
+        })
+    )
+}
+
+export default Video;
+
+

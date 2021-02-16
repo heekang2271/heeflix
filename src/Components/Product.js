@@ -4,6 +4,7 @@ import Message from "./Message";
 import Section from "./Section";
 import noPoster from "../img/popcorn.png";
 import Company from "./Company";
+import PropTypes from "prop-types";
 
 const Container = styled.div`
     margin-top: 50px;
@@ -16,7 +17,7 @@ const Country = styled.div`
     animation-name: fromLeft;
     animation-fill-mode: forwards;
     animation-duration: 1s;
-    animation-delay: 0.3s;
+    animation-delay: 0.5s;
     @keyframes fromLeft {
         0% {
             left: -30px;
@@ -35,7 +36,7 @@ const Companies = styled.div`
     animation-name: fromBottom;
     animation-fill-mode: forwards;
     animation-duration: 1s;
-    animation-delay: 1.3s;
+    animation-delay: 1.5s;
     @keyframes fromBottom {
         0% {
             bottom: ${`-50px`};
@@ -56,7 +57,7 @@ const Title = styled.h2`
 `;
 
 const Item = styled.div`
-    font-size: 18px;
+    font-size: 20px;
     font-family: "Kanit", sans-serif;
 
     &:not(:last-child) {
@@ -64,7 +65,7 @@ const Item = styled.div`
     }
 `;
 
-export default ({ company, country }) => (
+const Product = ({ company, country }) => (
     <Container>
         <Country>
             <Title>Production Countries</Title>
@@ -82,7 +83,7 @@ export default ({ company, country }) => (
                     {company.map((item) => (
                         <Company
                             key={item.id}
-                            logo={item.logo_path ? `${item.logo_path}` : noPoster}
+                            logo={item.logo_path ? `https://image.tmdb.org/t/p/original/${item.logo_path}` : noPoster}
                             name={item.name}
                             country={item.original_country}
                         />
@@ -97,3 +98,22 @@ export default ({ company, country }) => (
         </Companies>
     </Container>
 );
+
+Product.propTypes = {
+    country: PropTypes.arrayOf(
+        PropTypes.shape({
+            name: PropTypes.string.isRequired
+        })
+    ),
+
+    company: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.number.isRequired,
+            logo_path: PropTypes.string,
+            name: PropTypes.string.isRequired,
+            original_country: PropTypes.string
+        })
+    )
+}
+
+export default Product;
