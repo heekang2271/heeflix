@@ -5,6 +5,7 @@ import Message from "../Components/Message";
 import Error from "../Components/Error";
 import Section from "../Components/Section";
 import Poster from "../Components/Poster";
+import Helmet from "react-helmet";
 
 export default () => {
     const useGetData = () => {
@@ -71,6 +72,9 @@ export default () => {
                 </Error>
             ) : (
                     <main>
+                        <Helmet>
+                            <title>TV | Heeflix</title>
+                        </Helmet>
                         <Section title="Top Rated Show">
                             {topRated.map(show => (
                                 <Poster 

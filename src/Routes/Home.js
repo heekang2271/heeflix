@@ -6,6 +6,7 @@ import Poster1 from "../img/main1.png";
 import Poster2 from "../img/main3.png";
 import SearchImage from "../img/main2.png";
 import HomeContent from "../Components/HomeContent";
+import Helmet from "react-helmet";
 
 const Container = styled.div`
     position: absolute;
@@ -276,6 +277,9 @@ const RotateImage = styled.div`
 const Main = () => {
     return (
         <Container>
+            <Helmet>
+                <title>Heeflix</title>
+            </Helmet>
             <Cover
                 small="https://assets.nflxext.com/ffe/siteui/vlv3/8ef88e03-6f89-4c75-ae51-f8da7d252358/27a75e5a-803d-4318-be42-00ac58ea24aa/KR-ko-20210208-popsignuptwoweeks-perspective_alpha_website_small.jpg"
                 medium="https://assets.nflxext.com/ffe/siteui/vlv3/8ef88e03-6f89-4c75-ae51-f8da7d252358/27a75e5a-803d-4318-be42-00ac58ea24aa/KR-ko-20210208-popsignuptwoweeks-perspective_alpha_website_medium.jpg"

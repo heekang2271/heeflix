@@ -6,6 +6,7 @@ import Error from "../Components/Error";
 import Message from "../Components/Message";
 import DetailHeader from "../Components/DetailHeader";
 import noPoster from "../img/popcorn.png";
+import Helmet from "react-helmet";
 
 export default withRouter(({ location: { pathname }, match: { params: { id } }, history: { push } }) => {
     const isMovie = pathname.includes("/movie/");
@@ -59,10 +60,15 @@ export default withRouter(({ location: { pathname }, match: { params: { id } }, 
                 <Error>
                     <Message text="Can't find movies information." color="#e74c3c" />
                 </Error>
-            ): (
-                    <DetailHeader
-                        cover={data.backdrop_path ? `https://image.tmdb.org/t/p/original${data.backdrop_path}` : noPoster}
-                    />
+            ) : (
+                    <>
+                        <Helmet>
+                            <title>{data.original_title ? data.original_title : data.original_name} | Heeflix</title>
+                        </Helmet>
+                        <DetailHeader
+                            cover={data.backdrop_path ? `https://image.tmdb.org/t/p/original${data.backdrop_path}` : noPoster}
+                        />
+                    </>
             )
         )
     )

@@ -6,6 +6,7 @@ import Error from "../Components/Error";
 import Section from "../Components/Section";
 import Poster from "../Components/Poster";
 import { moviesAPI, tvAPI } from "../api";
+import Helmet from "react-helmet";
 
 
 export default () => {
@@ -81,6 +82,9 @@ export default () => {
                     </Error>
                 ) : (
                         <div>
+                            <Helmet>
+                                <title>Search | Heeflix</title>
+                            </Helmet>
                             {movieResults && movieResults.length > 0 && (
                                 <Section title="Movie Results">
                                     {movieResults.map((movie) => (
