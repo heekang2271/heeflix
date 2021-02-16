@@ -30,7 +30,7 @@
       "react-app/jest"
     ]
   },
-  "homepage": "https://heekang2271.github.io/heeflix",
+  "homepage": "https://cocky-galileo-aa2a2e.netlify.app/",
   "browserslist": {
     "production": [
       ">0.2%",
